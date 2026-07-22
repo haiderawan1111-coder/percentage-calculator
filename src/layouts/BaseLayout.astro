@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const siteName = "QuickCalc Tools";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <header class="border-b bg-white">
+      <nav class="mx-auto max-w-4xl px-4 py-4">
+        <a href="/" class="text-lg font-bold text-blue-600">
+          {siteName}
+        </a>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="mt-16 border-t bg-white">
+      <div class="mx-auto max-w-4xl px-4 py-6 text-center text-sm text-slate-500">
+        © {new Date().getFullYear()} {siteName}. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
