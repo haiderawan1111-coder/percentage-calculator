@@ -1,29 +1,163 @@
 ---
 import "../styles/global.css";
 
+import type { SEOData } from "../seo";
+import { createSchema } from "../seo";
+import { siteConfig } from "../config/site";
+
 interface Props {
-  title: string;
-  description: string;
+  seo: SEOData;
 }
 
-const { title, description } = Astro.props;
+const { seo } = Astro.props;
 
-const siteName = "QuickCalc Tools";
+const siteName = siteConfig.name;
+
+const schema = createSchema(seo);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <!-- Primary SEO -->
+
+    <title>{seo.title}</title>
+
+    <meta
+      name="description"
+      content={seo.description}
+    />
+
+    <link
+      rel="canonical"
+      href={seo.canonical}
+    />
+
+    <!-- Additional SEO -->
+
+    <meta
+      name="robots"
+      content="index, follow"
+    />
+
+    <meta
+      name="author"
+      content={siteConfig.author}
+    />
+
+    <meta
+      name="keywords"
+      content={seo.keywords?.join(", ")}
+    />
+
+    <meta
+      name="theme-color"
+      content="#2563eb"
+    />
+
+    <!-- Open Graph -->
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:site_name"
+      content={siteName}
+    />
+
+    <meta
+      property="og:locale"
+      content="en_US"
+    />
+
+    <meta
+      property="og:title"
+      content={seo.openGraph?.title}
+    />
+
+    <meta
+      property="og:description"
+      content={seo.openGraph?.description}
+    />
+
+    <meta
+      property="og:url"
+      content={seo.canonical}
+    />
+
+    <meta
+      property="og:image"
+      content={seo.openGraph?.image}
+    />
+
+    <!-- Twitter -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+  name="twitter:site"
+  content={siteConfig.social.twitter}
+/>
+
+    <meta
+  name="twitter:creator"
+  content={siteConfig.social.twitter}
+/>
+
+    <meta
+      name="twitter:title"
+      content={seo.openGraph?.title}
+    />
+
+    <meta
+      name="twitter:description"
+      content={seo.openGraph?.description}
+    />
+
+    <meta
+      name="twitter:image"
+      content={seo.openGraph?.image}
+    />
+
+    <!-- Icons -->
+
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png"
+    />
+
+    <!-- JSON-LD -->
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schema)}
+    />
   </head>
 
   <body class="min-h-screen bg-slate-50 text-slate-900">
     <header class="border-b bg-white">
       <nav class="mx-auto max-w-4xl px-4 py-4">
-        <a href="/" class="text-lg font-bold text-blue-600">
+        <a
+          href="/"
+          class="text-lg font-bold text-blue-600"
+        >
           {siteName}
         </a>
       </nav>

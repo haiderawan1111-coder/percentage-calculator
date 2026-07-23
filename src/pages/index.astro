@@ -2,22 +2,77 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PercentageCalculator from "../components/PercentageCalculator.astro";
 
-const pageTitle = "Percentage Calculator - Fast & Free Online Tool";
+import { createSEO } from "../seo";
 
-const pageDescription =
-  "Calculate percentages instantly with our free online percentage calculator.";
+const seo = createSEO({
+  title: "Percentage Calculator (Free & Fast) | Calculate Percentages Online",
+
+  description:
+    "Free online percentage calculator. Calculate percentages, percentage increase, percentage decrease, and percentage difference instantly.",
+
+  canonical: "/",
+
+  keywords: [
+    "percentage calculator",
+    "online percentage calculator",
+    "calculate percentage",
+    "percentage increase calculator",
+    "percentage decrease calculator",
+    "percentage difference calculator",
+    "free percentage calculator",
+  ],
+});
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="text-center py-8 sm:py-12">
-    <h1 class="text-3xl sm:text-4xl font-bold text-slate-900">
+<BaseLayout seo={seo}>
+  <section class="py-8 text-center sm:py-12">
+    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">
       Percentage Calculator
     </h1>
 
-    <p class="mt-4 text-base sm:text-lg text-slate-600 max-w-xl mx-auto">
-      Quickly find out what X% of a number is.
+    <p class="mx-auto mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
+      Calculate percentages instantly with our free online percentage calculator.
+      Find what percentage one number is of another, calculate percentage
+      increase and decrease, and solve common percentage problems in seconds.
     </p>
   </section>
 
   <PercentageCalculator />
+
+  <section class="mx-auto mt-16 max-w-3xl">
+    <h2 class="text-2xl font-bold text-slate-900">
+      Frequently Asked Questions
+    </h2>
+
+    <div class="mt-6 space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900">
+          How do I calculate percentages?
+        </h3>
+        <p class="mt-2 text-slate-600">
+          Divide the part by the whole and multiply the result by 100.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900">
+          How do I calculate percentage increase?
+        </h3>
+        <p class="mt-2 text-slate-600">
+          Subtract the original value from the new value, divide by the original
+          value, then multiply by 100.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900">
+          Is this percentage calculator free?
+        </h3>
+        <p class="mt-2 text-slate-600">
+          Yes. This percentage calculator is completely free and works on both
+          desktop and mobile devices.
+        </p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
