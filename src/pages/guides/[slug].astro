@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GuideLayout from "../../layouts/GuideLayout.astro";
+
+import { siteConfig } from "../../config/site";
+
+export async function getStaticPaths() {
+  const guides = await getCollection("guides", ({ data }) => !data.draft);
+
+  return guides.map((guide) => ({
+    params: {
+      slug: guide.id,
+    },
+    props: {
+      guide,
+    },
+  }));
+}
+
+const { guide } = Astro.props;
+
+const { Content } = await render(guide);
+
+const canonical = `${siteConfig.url}/guides/${guide.id}/`;
+
+const seo = {
+  title: guide.data.title,
+  description: guide.data.description,
+  canonical,
+
+  keywords: [
+    "percentage calculator",
+    "percentage guide",
+    "math guide",
+    "online calculator",
+    "QuickCalc Tools",
+  ],
+
+  openGraph: {
+    title: guide.data.title,
+    description: guide.data.description,
+    image: `${siteConfig.url}${siteConfig.defaultImage}`,
+  },
+};
+---
+
+<BaseLayout seo={seo}>
+  <GuideLayout
+    title={guide.data.title}
+    description={guide.data.description}
+    publishDate={guide.data.publishDate}
+    updatedDate={guide.data.updatedDate}
+    author={guide.data.author}
+  >
+    <Content />
+  </GuideLayout>
+</BaseLayout>
