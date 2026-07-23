@@ -1,13 +1,19 @@
+import { siteConfig } from "../config/site";
+
 import type { SEOData } from "./types";
 
 export function createSEO(data: SEOData): SEOData {
   return {
     ...data,
 
+    pageType: data.pageType ?? "website",
+
     openGraph: {
       title: data.openGraph?.title ?? data.title,
       description: data.openGraph?.description ?? data.description,
-      image: data.openGraph?.image ?? "/og-image.png",
+      image:
+        data.openGraph?.image ??
+        `${siteConfig.url}${siteConfig.defaultImage}`,
     },
 
     robots: {
@@ -15,6 +21,6 @@ export function createSEO(data: SEOData): SEOData {
       follow: data.robots?.follow ?? true,
     },
 
-    author: data.author ?? "Percentage Calculator",
+    author: data.author ?? siteConfig.author,
   };
 }

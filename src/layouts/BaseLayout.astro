@@ -49,12 +49,12 @@ const schema = createSchema(seo);
 
     <meta
       name="author"
-      content={siteConfig.author}
+      content={seo.author ?? siteConfig.author}
     />
 
     <meta
       name="keywords"
-      content={seo.keywords?.join(", ")}
+      content={seo.keywords.join(", ")}
     />
 
     <meta
@@ -66,7 +66,7 @@ const schema = createSchema(seo);
 
     <meta
       property="og:type"
-      content="website"
+      content={seo.pageType ?? "website"}
     />
 
     <meta
@@ -99,6 +99,21 @@ const schema = createSchema(seo);
       content={seo.openGraph?.image}
     />
 
+    <meta
+      property="og:image:alt"
+      content={seo.openGraph?.title ?? seo.title}
+    />
+
+    <meta
+      property="og:image:width"
+      content="1200"
+    />
+
+    <meta
+      property="og:image:height"
+      content="630"
+    />
+
     <!-- Twitter -->
 
     <meta
@@ -107,14 +122,14 @@ const schema = createSchema(seo);
     />
 
     <meta
-  name="twitter:site"
-  content={siteConfig.social.twitter}
-/>
+      name="twitter:site"
+      content={siteConfig.social.twitter}
+    />
 
     <meta
-  name="twitter:creator"
-  content={siteConfig.social.twitter}
-/>
+      name="twitter:creator"
+      content={siteConfig.social.twitter}
+    />
 
     <meta
       name="twitter:title"
@@ -129,6 +144,11 @@ const schema = createSchema(seo);
     <meta
       name="twitter:image"
       content={seo.openGraph?.image}
+    />
+
+    <meta
+      name="twitter:image:alt"
+      content={seo.openGraph?.title ?? seo.title}
     />
 
     <!-- Icons -->
