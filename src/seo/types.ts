@@ -10,6 +10,14 @@ export interface SEOData {
 
   pageType?: PageType;
 
+  author?: string;
+
+  publishDate?: Date;
+
+  updatedDate?: Date;
+
+  image?: string;
+
   openGraph?: {
     title?: string;
     description?: string;
@@ -20,6 +28,4 @@ export interface SEOData {
     index?: boolean;
     follow?: boolean;
   };
-
-  author?: string;
 }
