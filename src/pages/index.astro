@@ -1,6 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PercentageCalculator from "../components/PercentageCalculator.astro";
+
+import Hero from "../components/home/Hero.astro";
+import CalculatorSection from "../components/home/CalculatorSection.astro";
+import Features from "../components/home/Features.astro";
+import PopularCalculations from "../components/home/PopularCalculations.astro";
+import HowItWorks from "../components/home/HowItWorks.astro";
+import FAQPreview from "../components/home/FAQPreview.astro";
+import CTASection from "../components/home/CTASection.astro";
 
 import { createSEO } from "../seo";
 
@@ -25,54 +32,17 @@ const seo = createSEO({
 ---
 
 <BaseLayout seo={seo}>
-  <section class="py-8 text-center sm:py-12">
-    <h1 class="text-3xl font-bold text-slate-900 sm:text-4xl">
-      Percentage Calculator
-    </h1>
+  <Hero />
 
-    <p class="mx-auto mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
-      Calculate percentages instantly with our free online percentage calculator.
-      Find what percentage one number is of another, calculate percentage
-      increase and decrease, and solve common percentage problems in seconds.
-    </p>
-  </section>
+  <CalculatorSection />
 
-  <PercentageCalculator />
+  <Features />
 
-  <section class="mx-auto mt-16 max-w-3xl">
-    <h2 class="text-2xl font-bold text-slate-900">
-      Frequently Asked Questions
-    </h2>
+  <PopularCalculations />
 
-    <div class="mt-6 space-y-6">
-      <div>
-        <h3 class="text-lg font-semibold text-slate-900">
-          How do I calculate percentages?
-        </h3>
-        <p class="mt-2 text-slate-600">
-          Divide the part by the whole and multiply the result by 100.
-        </p>
-      </div>
+  <HowItWorks />
 
-      <div>
-        <h3 class="text-lg font-semibold text-slate-900">
-          How do I calculate percentage increase?
-        </h3>
-        <p class="mt-2 text-slate-600">
-          Subtract the original value from the new value, divide by the original
-          value, then multiply by 100.
-        </p>
-      </div>
+  <FAQPreview />
 
-      <div>
-        <h3 class="text-lg font-semibold text-slate-900">
-          Is this percentage calculator free?
-        </h3>
-        <p class="mt-2 text-slate-600">
-          Yes. This percentage calculator is completely free and works on both
-          desktop and mobile devices.
-        </p>
-      </div>
-    </div>
-  </section>
+  <CTASection />
 </BaseLayout>

@@ -1,0 +1,68 @@
+---
+import Container from "../ui/Container.astro";
+import Section from "../ui/Section.astro";
+import Card from "../ui/Card.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+
+import PercentageCalculator from "../PercentageCalculator.astro";
+---
+
+<Section class="pt-4">
+  <Container>
+    <div
+      id="calculator"
+      class="mx-auto max-w-5xl"
+    >
+      <div class="mb-10 text-center">
+        <Heading as="h2">
+          Calculate Any Percentage in Seconds
+        </Heading>
+
+        <div class="mx-auto mt-4 max-w-3xl">
+          <Text size="lg">
+            Enter your values below and get instant percentage calculations.
+            Fast, accurate, free, and works perfectly on desktop, tablet,
+            and mobile devices.
+          </Text>
+        </div>
+      </div>
+
+      <Card class="p-8">
+        <PercentageCalculator />
+      </Card>
+
+      <div
+        class="mt-8 grid grid-cols-2 gap-4 text-center md:grid-cols-4"
+      >
+        <div class="rounded-xl bg-slate-100 p-4">
+          <div class="text-2xl">⚡</div>
+          <p class="mt-2 text-sm font-medium text-slate-700">
+            Instant Results
+          </p>
+        </div>
+
+        <div class="rounded-xl bg-slate-100 p-4">
+          <div class="text-2xl">🎯</div>
+          <p class="mt-2 text-sm font-medium text-slate-700">
+            Accurate
+          </p>
+        </div>
+
+        <div class="rounded-xl bg-slate-100 p-4">
+          <div class="text-2xl">📱</div>
+          <p class="mt-2 text-sm font-medium text-slate-700">
+            Mobile Friendly
+          </p>
+        </div>
+
+        <div class="rounded-xl bg-slate-100 p-4">
+          <div class="text-2xl">🔒</div>
+          <p class="mt-2 text-sm font-medium text-slate-700">
+            Privacy First
+          </p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

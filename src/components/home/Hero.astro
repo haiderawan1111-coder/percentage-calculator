@@ -1,0 +1,52 @@
+---
+import Container from "../ui/Container.astro";
+import Section from "../ui/Section.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+---
+
+<Section>
+  <Container>
+    <div class="mx-auto max-w-4xl text-center">
+      <Badge>Free • Fast • Accurate</Badge>
+
+      <div class="mt-6">
+        <Heading as="h1">
+          Free Percentage Calculator
+        </Heading>
+      </div>
+
+      <div class="mt-6">
+        <Text size="lg">
+          Calculate percentages, percentage increase, percentage decrease,
+          percentage difference, and more with our fast, accurate, and free
+          online percentage calculator.
+        </Text>
+      </div>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button href="#calculator">
+          Start Calculating
+        </Button>
+
+        <Button
+          href="/guides"
+          variant="outline"
+        >
+          Read Guides
+        </Button>
+      </div>
+
+      <div
+        class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-slate-500"
+      >
+        <span>✓ No Registration</span>
+        <span>✓ Instant Results</span>
+        <span>✓ Mobile Friendly</span>
+        <span>✓ Completely Free</span>
+      </div>
+    </div>
+  </Container>
+</Section>

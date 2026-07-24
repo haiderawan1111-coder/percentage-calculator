@@ -1,0 +1,78 @@
+---
+import Container from "../ui/Container.astro";
+import Section from "../ui/Section.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Card from "../ui/Card.astro";
+
+const calculations = [
+  {
+    title: "What is X% of Y?",
+    description: "Quickly find the percentage value of any number.",
+    href: "#calculator",
+  },
+  {
+    title: "Percentage Increase",
+    description: "Calculate growth between two values instantly.",
+    href: "#calculator",
+  },
+  {
+    title: "Percentage Decrease",
+    description: "Measure decreases accurately in seconds.",
+    href: "#calculator",
+  },
+  {
+    title: "Percentage Difference",
+    description: "Compare two numbers using percentage difference.",
+    href: "#calculator",
+  },
+  {
+    title: "Reverse Percentage",
+    description: "Find the original value before a percentage change.",
+    href: "#calculator",
+  },
+  {
+    title: "Percentage Change",
+    description: "Calculate increases and decreases with one tool.",
+    href: "#calculator",
+  },
+];
+---
+
+<Section>
+  <Container>
+    <div class="mx-auto max-w-3xl text-center">
+      <Heading as="h2">
+        Popular Percentage Calculations
+      </Heading>
+
+      <div class="mt-4">
+        <Text size="lg">
+          Solve the most common percentage problems using our free calculator.
+        </Text>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        calculations.map((item) => (
+          <a href={item.href} class="group block">
+            <Card class="h-full transition-all duration-200 group-hover:-translate-y-1">
+              <h3 class="text-lg font-semibold text-slate-900">
+                {item.title}
+              </h3>
+
+              <p class="mt-3 text-slate-600">
+                {item.description}
+              </p>
+
+              <div class="mt-5 text-sm font-medium text-blue-600">
+                Calculate Now →
+              </div>
+            </Card>
+          </a>
+        ))
+      }
+    </div>
+  </Container>
+</Section>
