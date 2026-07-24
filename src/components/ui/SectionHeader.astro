@@ -1,0 +1,36 @@
+---
+import Heading from "./Heading.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+  class?: string;
+}
+
+const {
+  title,
+  description = "",
+  align = "center",
+  class: className = "",
+} = Astro.props;
+
+const alignment =
+  align === "left"
+    ? "text-left items-start"
+    : "text-center items-center";
+---
+
+<div class={`mb-10 flex flex-col ${alignment} ${className}`}>
+  <Heading as="h2">
+    {title}
+  </Heading>
+
+  {
+    description && (
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+        {description}
+      </p>
+    )
+  }
+</div>

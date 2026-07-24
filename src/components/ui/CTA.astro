@@ -1,0 +1,45 @@
+---
+import Heading from "./Heading.astro";
+import Text from "./Text.astro";
+import Button from "./Button.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonHref: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  buttonText,
+  buttonHref,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`rounded-3xl bg-blue-600 px-8 py-16 text-center text-white ${className}`}>
+  <Heading
+    as="h2"
+    class="text-white"
+  >
+    {title}
+  </Heading>
+
+  <div class="mx-auto mt-5 max-w-2xl">
+    <Text class="text-blue-100">
+      {description}
+    </Text>
+  </div>
+
+  <div class="mt-8">
+    <Button
+      href={buttonHref}
+      class="bg-white text-blue-600 hover:bg-slate-100"
+    >
+      {buttonText}
+    </Button>
+  </div>
+</div>
