@@ -13,24 +13,24 @@ const copyButton = document.querySelector<HTMLButtonElement>(
   "#copy-result-button"
 );
 
+const shareButton = document.querySelector<HTMLButtonElement>(
+  "#share-result-button"
+);
+
 async function copyResult() {
   if (!resultValue || !copyButton) return;
 
   const text = resultValue.textContent?.trim();
 
-  if (!text || text === "—") {
-    return;
-  }
+  if (!text || text === "—") return;
 
   try {
     await navigator.clipboard.writeText(text);
 
-    const original = copyButton.textContent;
-
     copyButton.textContent = "✅ Copied!";
 
     setTimeout(() => {
-      copyButton.textContent = original ?? "📋 Copy Result";
+      copyButton.textContent = "📋 Copy Result";
     }, 2000);
   } catch {
     copyButton.textContent = "❌ Copy Failed";
@@ -41,7 +41,42 @@ async function copyResult() {
   }
 }
 
+async function shareResult() {
+  if (!resultValue || !shareButton) return;
+
+  const text = resultValue.textContent?.trim();
+
+  if (!text || text === "—") return;
+
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: document.title,
+        text: `Result: ${text}`,
+        url: window.location.href,
+      });
+
+      shareButton.textContent = "✅ Shared!";
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+
+      shareButton.textContent = "🔗 Link Copied!";
+    }
+
+    setTimeout(() => {
+      shareButton.textContent = "🔗 Share Result";
+    }, 2000);
+  } catch {
+    shareButton.textContent = "❌ Share Failed";
+
+    setTimeout(() => {
+      shareButton.textContent = "🔗 Share Result";
+    }, 2000);
+  }
+}
+
 copyButton?.addEventListener("click", copyResult);
+shareButton?.addEventListener("click", shareResult);
 
 if (form && inputX && inputY && resultValue && resultDescription) {
   form.addEventListener("submit", (event) => {
