@@ -2,13 +2,8 @@
 import Card from "../ui/Card.astro";
 import Heading from "../ui/Heading.astro";
 import Button from "../ui/Button.astro";
-import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
 
-interface CalculatorItem {
-  title: string;
-  description: string;
-  href: string;
-}
+import { calculators } from "../../data/calculators";
 
 interface Props {
   current: string;
@@ -16,36 +11,8 @@ interface Props {
 
 const { current } = Astro.props;
 
-const calculators: CalculatorItem[] = [
-  {
-    title: "Percentage Change Calculator",
-    description: "Calculate percentage increase or decrease between two values.",
-    href: "/percentage-change",
-  },
-  {
-    title: "Percentage Increase Calculator",
-    description: "Calculate the percentage increase from one value to another.",
-    href: "/percentage-increase",
-  },
-  {
-    title: "Percentage Decrease Calculator",
-    description: "Calculate the percentage decrease quickly and accurately.",
-    href: "/percentage-decrease",
-  },
-  {
-    title: "Percentage Error Calculator",
-    description: "Find percentage error using actual and measured values.",
-    href: "/percentage-error",
-  },
-  {
-    title: "Percentage Increase/Decrease Calculator",
-    description: "Determine whether a value increased or decreased.",
-    href: "/percentage-increase-decrease",
-  },
-];
-
 const related = calculators.filter(
-  (calculator) => calculator.href !== current
+  (calculator) => calculator.href !== current,
 );
 ---
 
@@ -55,25 +22,24 @@ const related = calculators.filter(
   </Heading>
 
   <div class="mt-8 grid gap-6 md:grid-cols-2">
-    {related.map((calculator) => (
-      <Card>
+    {
+      related.map((calculator) => (
+        <Card>
+          <h3 class="text-xl font-semibold text-slate-900">
+            {calculator.title}
+          </h3>
 
-        <RelatedCalculators current="/percentage-change" />
+          <p class="mt-3 text-slate-600">
+            {calculator.description}
+          </p>
 
-        <h3 class="text-xl font-semibold text-slate-900">
-          {calculator.title}
-        </h3>
-
-        <p class="mt-3 text-slate-600">
-          {calculator.description}
-        </p>
-
-        <div class="mt-6">
-          <Button href={calculator.href}>
-            Open Calculator
-          </Button>
-        </div>
-      </Card>
-    ))}
+          <div class="mt-6">
+            <Button href={calculator.href}>
+              Open Calculator
+            </Button>
+          </div>
+        </Card>
+      ))
+    }
   </div>
 </section>
