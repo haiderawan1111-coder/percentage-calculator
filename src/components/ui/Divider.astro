@@ -1,9 +1,21 @@
 ---
 interface Props {
   class?: string;
+  spacing?: "sm" | "md" | "lg";
 }
 
-const { class: className = "" } = Astro.props;
+const {
+  class: className = "",
+  spacing = "md",
+} = Astro.props;
+
+const spaces = {
+  sm: "my-4",
+  md: "my-8",
+  lg: "my-12",
+};
 ---
 
-<hr class={`border-slate-200 ${className}`} />
+<hr
+  class={`border-0 border-t border-slate-200 ${spaces[spacing]} ${className}`}
+/>

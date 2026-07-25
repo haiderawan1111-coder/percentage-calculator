@@ -1,13 +1,23 @@
 ---
 interface Props {
+  variant?: "info" | "success" | "warning";
   class?: string;
 }
 
-const { class: className = "" } = Astro.props;
+const {
+  variant = "info",
+  class: className = "",
+} = Astro.props;
+
+const variants = {
+  info: "border-blue-200 bg-blue-50 text-blue-900",
+  success: "border-green-200 bg-green-50 text-green-900",
+  warning: "border-amber-200 bg-amber-50 text-amber-900",
+};
 ---
 
 <div
-  class={`rounded-2xl border border-blue-200 bg-blue-50 p-5 ${className}`}
+  class={`rounded-2xl border p-5 ${variants[variant]} ${className}`}
 >
   <slot />
 </div>

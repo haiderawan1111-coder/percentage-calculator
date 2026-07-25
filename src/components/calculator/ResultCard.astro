@@ -1,0 +1,33 @@
+---
+interface Props {
+  title?: string;
+}
+
+const {
+  title = "Result",
+} = Astro.props;
+---
+
+<div class="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-6">
+  <p class="text-sm font-medium text-slate-500">
+    {title}
+  </p>
+
+  <p
+    id="result-description"
+    class="mt-2 text-slate-600"
+  >
+    <slot name="description">
+      Enter values and click Calculate.
+    </slot>
+  </p>
+
+  <p
+    id="result-value"
+    class="mt-2 text-2xl font-bold text-slate-900"
+  >
+    <slot name="value">
+      —
+    </slot>
+  </p>
+</div>
