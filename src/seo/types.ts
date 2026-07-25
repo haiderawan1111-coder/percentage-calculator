@@ -5,6 +5,11 @@ export interface BreadcrumbItem {
   url: string;
 }
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface SEOData {
   title: string;
   description: string;
@@ -24,6 +29,8 @@ export interface SEOData {
   image?: string;
 
   breadcrumbs?: BreadcrumbItem[];
+
+  faqs?: FAQItem[];
 
   openGraph?: {
     title?: string;

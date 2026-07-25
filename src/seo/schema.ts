@@ -1,5 +1,6 @@
 import type { SEOData } from "./types";
 import { siteConfig } from "../config/site";
+import { createFAQSchema } from "./faq";
 
 function buildOrganization() {
   return {
@@ -129,6 +130,10 @@ export function createSchema(seo: SEOData) {
   }
 
   schema.push(buildBreadcrumb(pageUrl, seo));
+
+  if (seo.faqs && seo.faqs.length > 0) {
+    schema.push(createFAQSchema(seo.faqs));
+  }
 
   return schema;
 }
