@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import Section from "../components/ui/Section.astro";
+import Card from "../components/ui/Card.astro";
+import Heading from "../components/ui/Heading.astro";
+import Text from "../components/ui/Text.astro";
+
+import PercentageIncreaseCalculator from "../components/PercentageIncreaseCalculator.astro";
+
+import { createSEO } from "../seo";
+
+const seo = createSEO({
+  title: "Percentage Increase Calculator (Free Online)",
+
+  description:
+    "Calculate percentage increase instantly. Add any percentage to a number with this free online percentage increase calculator.",
+
+  canonical: "/percentage-increase",
+
+  keywords: [
+    "percentage increase calculator",
+    "increase by percentage",
+    "percentage increase",
+    "increase calculator",
+  ],
+});
+---
+
+<BaseLayout seo={seo}>
+  <Section>
+    <Container>
+      <div class="mx-auto max-w-5xl">
+        <div class="mb-10 text-center">
+          <Heading as="h1">
+            Percentage Increase Calculator
+          </Heading>
+
+          <div class="mx-auto mt-4 max-w-3xl">
+            <Text size="lg">
+              Increase any number by a percentage instantly. Fast, accurate,
+              and completely free.
+            </Text>
+          </div>
+        </div>
+
+        <Card class="p-8">
+          <PercentageIncreaseCalculator />
+        </Card>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

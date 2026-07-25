@@ -14,7 +14,7 @@ const calculations = [
   {
     title: "Percentage Increase",
     description: "Calculate growth between two values instantly.",
-    href: "#calculator",
+    href: "/percentage-increase",
   },
   {
     title: "Percentage Decrease",
@@ -56,7 +56,11 @@ const calculations = [
     <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         calculations.map((item) => (
-          <a href={item.href} class="group block">
+          <a
+            href={item.href}
+            class="group block"
+            aria-label={item.title}
+          >
             <Card class="h-full transition-all duration-200 group-hover:-translate-y-1">
               <h3 class="text-lg font-semibold text-slate-900">
                 {item.title}
