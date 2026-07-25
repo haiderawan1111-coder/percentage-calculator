@@ -9,6 +9,40 @@ const resultValue = document.querySelector<HTMLElement>("#result-value");
 const resultDescription =
   document.querySelector<HTMLElement>("#result-description");
 
+const copyButton = document.querySelector<HTMLButtonElement>(
+  "#copy-result-button"
+);
+
+async function copyResult() {
+  if (!resultValue || !copyButton) return;
+
+  const text = resultValue.textContent?.trim();
+
+  if (!text || text === "—") {
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+
+    const original = copyButton.textContent;
+
+    copyButton.textContent = "✅ Copied!";
+
+    setTimeout(() => {
+      copyButton.textContent = original ?? "📋 Copy Result";
+    }, 2000);
+  } catch {
+    copyButton.textContent = "❌ Copy Failed";
+
+    setTimeout(() => {
+      copyButton.textContent = "📋 Copy Result";
+    }, 2000);
+  }
+}
+
+copyButton?.addEventListener("click", copyResult);
+
 if (form && inputX && inputY && resultValue && resultDescription) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();

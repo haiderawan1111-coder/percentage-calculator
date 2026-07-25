@@ -1,4 +1,6 @@
 ---
+import CopyButton from "./CopyButton.astro";
+
 interface Props {
   title?: string;
 }
@@ -30,4 +32,6 @@ const {
       —
     </slot>
   </p>
+
+  <CopyButton targetId="result-value" />
 </div>
