@@ -20,7 +20,8 @@ const faqs = [
       "Subtract the original value from the new value, divide by the original value, then multiply by 100.",
   },
   {
-    question: "What is the difference between percentage increase and percentage decrease?",
+    question:
+      "What is the difference between percentage increase and percentage decrease?",
     answer:
       "A percentage increase shows growth from the original value, while a percentage decrease shows a reduction from the original value.",
   },
@@ -57,9 +58,23 @@ const seo = createSEO({
 
   faqs,
 });
+
+const breadcrumb = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Percentage Change Calculator",
+    url: seo.canonical,
+  },
+];
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout
+  seo={seo}
+  breadcrumb={breadcrumb}
+>
   <Section>
     <Container>
       <div class="mx-auto max-w-5xl">
