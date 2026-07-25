@@ -1,5 +1,6 @@
 import { setStatus, clearStatus } from "./helpers/status";
 import { loadValuesFromUrl, saveValuesToUrl } from "./helpers/urlState";
+import { registerKeyboardShortcuts } from "./helpers/keyboardShortcuts";
 import { calculatePercentage } from "../utils/percentage";
 import { validateNumbers } from "../utils/validation";
 
@@ -160,4 +161,14 @@ if (form && inputX && inputY && resultValue && resultDescription) {
 
   inputX.addEventListener("input", clearResult);
   inputY.addEventListener("input", clearResult);
+
+  registerKeyboardShortcuts({
+    onCalculate: () => {
+      form.requestSubmit();
+    },
+
+    onReset: () => {
+      form.reset();
+    },
+  });
 }
