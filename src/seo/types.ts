@@ -1,5 +1,10 @@
 export type PageType = "website" | "article";
 
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 export interface SEOData {
   title: string;
   description: string;
@@ -17,6 +22,8 @@ export interface SEOData {
   updatedDate?: Date;
 
   image?: string;
+
+  breadcrumbs?: BreadcrumbItem[];
 
   openGraph?: {
     title?: string;

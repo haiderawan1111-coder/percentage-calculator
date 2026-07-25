@@ -83,30 +83,30 @@ function buildArticle(seo: SEOData, url: string) {
 }
 
 function buildBreadcrumb(url: string, seo: SEOData) {
+  const items = [
+    {
+      name: "Home",
+      url: siteConfig.url,
+    },
+    ...(seo.breadcrumbs ?? []),
+    {
+      name: seo.title,
+      url,
+    },
+  ];
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
 
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteConfig.url,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Guides",
-        item: `${siteConfig.url}/guides/`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: seo.title,
-        item: url,
-      },
-    ],
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith("http")
+        ? item.url
+        : new URL(item.url, siteConfig.url).toString(),
+    })),
   };
 }
 
