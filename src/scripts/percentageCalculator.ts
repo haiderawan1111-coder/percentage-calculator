@@ -1,4 +1,5 @@
 import { setStatus, clearStatus } from "./helpers/status";
+import { loadValuesFromUrl, saveValuesToUrl } from "./helpers/urlState";
 import { calculatePercentage } from "../utils/percentage";
 import { validateNumbers } from "../utils/validation";
 
@@ -98,9 +99,10 @@ shareButton?.addEventListener("click", shareResult);
 printButton?.addEventListener("click", printResult);
 
 if (form && inputX && inputY && resultValue && resultDescription) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+  // Restore values from URL
+  loadValuesFromUrl(inputX, inputY);
 
+  const calculate = () => {
     const percent = Number(inputX.value);
     const total = Number(inputY.value);
 
@@ -113,26 +115,14 @@ if (form && inputX && inputY && resultValue && resultDescription) {
     });
 
     if (!validation.valid) {
-      setStatus(
-        resultValue,
-        resultDescription,
-        "Invalid input",
-        validation.message,
-        "error"
-      );
+      clearStatus(resultValue, resultDescription);
       return;
     }
 
     const result = calculatePercentage(percent, total);
 
     if (result === null) {
-      setStatus(
-        resultValue,
-        resultDescription,
-        "Invalid input",
-        "Please enter valid values.",
-        "error"
-      );
+      clearStatus(resultValue, resultDescription);
       return;
     }
 
@@ -143,14 +133,29 @@ if (form && inputX && inputY && resultValue && resultDescription) {
       `${percent}% of ${total} = ${result}`,
       "success"
     );
+  };
+
+  // Auto calculate after restoring values
+  calculate();
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    saveValuesToUrl(inputX.value, inputY.value);
+
+    calculate();
   });
 
   form.addEventListener("reset", () => {
     clearStatus(resultValue, resultDescription);
+
+    saveValuesToUrl("", "");
   });
 
   const clearResult = () => {
     clearStatus(resultValue, resultDescription);
+
+    saveValuesToUrl(inputX.value, inputY.value);
   };
 
   inputX.addEventListener("input", clearResult);
