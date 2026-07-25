@@ -1,0 +1,35 @@
+---
+import CalculatorLayout from "./calculator/CalculatorLayout.astro";
+import NumberInput from "./calculator/NumberInput.astro";
+import ResultCard from "./calculator/ResultCard.astro";
+import ActionBar from "./calculator/ActionBar.astro";
+---
+
+<CalculatorLayout title="Percentage Change Calculator">
+  <form id="percentage-change-form" class="mt-6 space-y-4" novalidate>
+    <NumberInput
+      id="old-value"
+      name="old-value"
+      label="Old Value"
+      placeholder="e.g. 80"
+    />
+
+    <NumberInput
+      id="new-value"
+      name="new-value"
+      label="New Value"
+      placeholder="e.g. 100"
+    />
+
+    <ActionBar
+      submitText="Calculate Change"
+      resetText="Reset"
+    />
+  </form>
+
+  <ResultCard title="Result" />
+</CalculatorLayout>
+
+<script>
+  import "../scripts/percentageChangeCalculator.ts";
+</script>
