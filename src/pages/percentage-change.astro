@@ -6,31 +6,10 @@ import Section from "../components/ui/Section.astro";
 import Card from "../components/ui/Card.astro";
 import Heading from "../components/ui/Heading.astro";
 import Text from "../components/ui/Text.astro";
-import Breadcrumb from "../components/ui/Breadcrumb.astro";
 
 import PercentageChangeCalculator from "../components/PercentageChangeCalculator.astro";
-import FAQSection from "../components/calculator/FAQSection.astro";
 
 import { createSEO } from "../seo";
-
-const faqs = [
-  {
-    question: "How do you calculate percentage change?",
-    answer:
-      "Subtract the original value from the new value, divide by the original value, then multiply by 100.",
-  },
-  {
-    question:
-      "What is the difference between percentage increase and percentage decrease?",
-    answer:
-      "A percentage increase shows growth from the original value, while a percentage decrease shows a reduction from the original value.",
-  },
-  {
-    question: "Can I use this calculator with decimal numbers?",
-    answer:
-      "Yes. This calculator supports whole numbers as well as decimal values for accurate percentage change calculations.",
-  },
-];
 
 const seo = createSEO({
   title: "Percentage Change Calculator",
@@ -48,45 +27,14 @@ const seo = createSEO({
     "calculate percentage change",
     "change between two numbers",
   ],
-
-  breadcrumbs: [
-    {
-      name: "Calculators",
-      url: "/calculators/",
-    },
-  ],
-
-  faqs,
 });
-
-const breadcrumb = [
-  {
-    name: "Home",
-    url: "/",
-  },
-  {
-    name: "Percentage Change Calculator",
-    url: seo.canonical,
-  },
-];
 ---
 
-<BaseLayout
-  seo={seo}
-  breadcrumb={breadcrumb}
->
+<BaseLayout seo={seo}>
   <Section>
     <Container>
       <div class="mx-auto max-w-5xl">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Calculators", href: "/calculators" },
-            { label: "Percentage Change Calculator" },
-          ]}
-        />
-
-        <div class="mb-10 mt-6 text-center">
+        <div class="mb-10 text-center">
           <Heading as="h1">
             Percentage Change Calculator
           </Heading>
@@ -103,8 +51,6 @@ const breadcrumb = [
         <Card class="p-8">
           <PercentageChangeCalculator />
         </Card>
-
-        <FAQSection faqs={faqs} />
       </div>
     </Container>
   </Section>

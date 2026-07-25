@@ -29,19 +29,9 @@ const seo = createSEO({
     "free percentage calculator",
   ],
 });
-
-const breadcrumb = [
-  {
-    name: "Home",
-    url: seo.canonical,
-  },
-];
 ---
 
-<BaseLayout
-  seo={seo}
-  breadcrumb={breadcrumb}
->
+<BaseLayout seo={seo}>
   <Hero />
 
   <CalculatorSection />

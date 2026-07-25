@@ -5,17 +5,12 @@ import type { SEOData } from "../seo";
 import { createSchema } from "../seo";
 import { siteConfig } from "../config/site";
 import Toast from "../components/ui/Toast.astro";
-import BreadcrumbSchema from "../components/seo/BreadcrumbSchema.astro";
 
 interface Props {
   seo: SEOData;
-  breadcrumb?: {
-    name: string;
-    url: string;
-  }[];
 }
 
-const { seo, breadcrumb } = Astro.props;
+const { seo } = Astro.props;
 
 const siteName = siteConfig.name;
 
@@ -175,10 +170,6 @@ const schema = createSchema(seo);
       type="application/ld+json"
       set:html={JSON.stringify(schema)}
     />
-
-    {breadcrumb && breadcrumb.length > 0 && (
-      <BreadcrumbSchema items={breadcrumb} />
-    )}
   </head>
 
   <body class="min-h-screen bg-slate-50 text-slate-900">
