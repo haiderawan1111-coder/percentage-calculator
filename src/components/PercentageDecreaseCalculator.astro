@@ -1,0 +1,35 @@
+---
+import CalculatorLayout from "./calculator/CalculatorLayout.astro";
+import NumberInput from "./calculator/NumberInput.astro";
+import ResultCard from "./calculator/ResultCard.astro";
+import ActionBar from "./calculator/ActionBar.astro";
+---
+
+<CalculatorLayout title="Decrease a Number by a Percentage">
+  <form id="percentage-decrease-form" class="mt-6 space-y-4" novalidate>
+    <NumberInput
+      id="decrease-value"
+      name="decrease-value"
+      label="Original Value"
+      placeholder="e.g. 150"
+    />
+
+    <NumberInput
+      id="decrease-percent"
+      name="decrease-percent"
+      label="Decrease Percentage"
+      placeholder="e.g. 20"
+    />
+
+    <ActionBar
+      submitText="Calculate Decrease"
+      resetText="Reset"
+    />
+  </form>
+
+  <ResultCard title="Result" />
+</CalculatorLayout>
+
+<script>
+  import "../scripts/percentageDecreaseCalculator.ts";
+</script>
