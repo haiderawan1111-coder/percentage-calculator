@@ -134,6 +134,17 @@ if (form && inputX && inputY && resultValue && resultDescription) {
       `${percent}% of ${total} = ${result}`,
       "success"
     );
+
+    // Focus result for accessibility
+    resultValue.focus({
+      preventScroll: true,
+    });
+
+    // Smooth scroll to result
+    resultValue.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   };
 
   // Auto calculate after restoring values
@@ -151,6 +162,9 @@ if (form && inputX && inputY && resultValue && resultDescription) {
     clearStatus(resultValue, resultDescription);
 
     saveValuesToUrl("", "");
+
+    // Return focus to first input
+    inputX.focus();
   });
 
   const clearResult = () => {

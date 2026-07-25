@@ -19,18 +19,21 @@ const {
   </p>
 
   <p
-    id="result-description"
-    class="mt-2 text-slate-600"
-  >
+  id="result-description"
+  class="mt-2 text-slate-600"
+  aria-live="polite"
+>
     <slot name="description">
       Enter values and click Calculate.
     </slot>
   </p>
 
   <p
-    id="result-value"
-    class="mt-2 text-2xl font-bold text-slate-900"
-  >
+  id="result-value"
+  class="mt-2 text-2xl font-bold text-slate-900 transition-all duration-300"
+  aria-live="polite"
+  tabindex="-1"
+>
     <slot name="value">
       —
     </slot>
