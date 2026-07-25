@@ -111,3 +111,58 @@ main > section {
     margin-block: var(--section-spacing-sm);
   }
 }
+
+/* ==========================================
+   Print Styles
+========================================== */
+
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  nav,
+  header,
+  footer,
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  #calculator-result {
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.5rem;
+    box-shadow: none !important;
+    margin: 0;
+    padding: 1.5rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  #result-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000 !important;
+  }
+
+  #result-description {
+    margin-bottom: 1rem;
+    color: #374151 !important;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: none;
+  }
+
+  button {
+    display: none !important;
+  }
+}

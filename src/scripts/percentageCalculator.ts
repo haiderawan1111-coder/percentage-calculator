@@ -17,6 +17,10 @@ const shareButton = document.querySelector<HTMLButtonElement>(
   "#share-result-button"
 );
 
+const printButton = document.querySelector<HTMLButtonElement>(
+  "#print-result-button"
+);
+
 async function copyResult() {
   if (!resultValue || !copyButton) return;
 
@@ -75,8 +79,23 @@ async function shareResult() {
   }
 }
 
+function printResult() {
+  if (!printButton) return;
+
+  const originalText = printButton.textContent;
+
+  printButton.textContent = "🖨️ Printing...";
+
+  window.print();
+
+  setTimeout(() => {
+    printButton.textContent = originalText ?? "🖨️ Print Result";
+  }, 1000);
+}
+
 copyButton?.addEventListener("click", copyResult);
 shareButton?.addEventListener("click", shareResult);
+printButton?.addEventListener("click", printResult);
 
 if (form && inputX && inputY && resultValue && resultDescription) {
   form.addEventListener("submit", (event) => {

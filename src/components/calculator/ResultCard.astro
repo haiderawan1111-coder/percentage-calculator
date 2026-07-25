@@ -1,6 +1,7 @@
 ---
 import CopyButton from "./CopyButton.astro";
 import ShareButton from "./ShareButton.astro";
+import PrintButton from "./PrintButton.astro";
 
 interface Props {
   title?: string;
@@ -11,7 +12,10 @@ const {
 } = Astro.props;
 ---
 
-<div class="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-6">
+<div
+  id="calculator-result"
+  class="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-6"
+>
   <p class="text-sm font-medium text-slate-500">
     {title}
   </p>
@@ -34,8 +38,9 @@ const {
     </slot>
   </p>
 
-  <div class="mt-4 flex flex-wrap gap-3">
+  <div class="mt-4 flex flex-wrap gap-3 print:hidden">
     <CopyButton targetId="result-value" />
     <ShareButton targetId="result-value" />
+    <PrintButton />
   </div>
 </div>
