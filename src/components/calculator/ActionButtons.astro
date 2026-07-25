@@ -1,0 +1,19 @@
+---
+import CopyButton from "./CopyButton.astro";
+import ShareButton from "./ShareButton.astro";
+import PrintButton from "./PrintButton.astro";
+
+interface Props {
+  targetId?: string;
+}
+
+const {
+  targetId = "result-value",
+} = Astro.props;
+---
+
+<div class="mt-4 flex flex-wrap gap-3 print:hidden">
+  <CopyButton targetId={targetId} />
+  <ShareButton targetId={targetId} />
+  <PrintButton />
+</div>

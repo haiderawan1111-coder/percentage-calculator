@@ -1,7 +1,5 @@
 ---
-import CopyButton from "./CopyButton.astro";
-import ShareButton from "./ShareButton.astro";
-import PrintButton from "./PrintButton.astro";
+import ActionButtons from "./ActionButtons.astro";
 
 interface Props {
   title?: string;
@@ -38,9 +36,5 @@ const {
     </slot>
   </p>
 
-  <div class="mt-4 flex flex-wrap gap-3 print:hidden">
-    <CopyButton targetId="result-value" />
-    <ShareButton targetId="result-value" />
-    <PrintButton />
-  </div>
+  <ActionButtons targetId="result-value" />
 </div>
