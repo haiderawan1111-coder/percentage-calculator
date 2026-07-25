@@ -4,6 +4,7 @@ import "../styles/global.css";
 import type { SEOData } from "../seo";
 import { createSchema } from "../seo";
 import { siteConfig } from "../config/site";
+import Toast from "../components/ui/Toast.astro";
 
 interface Props {
   seo: SEOData;
@@ -197,5 +198,7 @@ const schema = createSchema(seo);
         © {new Date().getFullYear()} {siteName}. All rights reserved.
       </div>
     </footer>
+
+    <Toast />
   </body>
 </html>
