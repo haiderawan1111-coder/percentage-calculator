@@ -1,0 +1,35 @@
+---
+import CalculatorLayout from "./calculator/CalculatorLayout.astro";
+import NumberInput from "./calculator/NumberInput.astro";
+import ResultCard from "./calculator/ResultCard.astro";
+import ActionBar from "./calculator/ActionBar.astro";
+---
+
+<CalculatorLayout title="Percentage Increase / Decrease Calculator">
+  <form id="percentage-increase-decrease-form" class="mt-6 space-y-4" novalidate>
+    <NumberInput
+      id="old-value"
+      name="old-value"
+      label="Old Value"
+      placeholder="e.g. 100"
+    />
+
+    <NumberInput
+      id="new-value"
+      name="new-value"
+      label="New Value"
+      placeholder="e.g. 120"
+    />
+
+    <ActionBar
+      submitText="Calculate"
+      resetText="Reset"
+    />
+  </form>
+
+  <ResultCard title="Result" />
+</CalculatorLayout>
+
+<script>
+  import "../scripts/percentageIncreaseDecreaseCalculator.ts";
+</script>
