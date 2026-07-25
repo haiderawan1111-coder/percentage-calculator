@@ -1,6 +1,6 @@
 import { executeCalculator } from "../calculator/engine";
+import { percentageOf } from "../calculator/formulas";
 import { validateNumbers } from "./validation";
-
 /**
  * Calculates what X% of a given total (Y) is.
  *
@@ -19,7 +19,7 @@ export function calculatePercentage(
         allowZero: false,
       }),
 
-    calculate: () => (percent / 100) * total,
+    calculate: () => percentageOf(percent, total),
 
     round: 2,
   });
