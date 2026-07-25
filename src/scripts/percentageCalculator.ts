@@ -1,6 +1,7 @@
 import { setStatus, clearStatus } from "./helpers/status";
 import { loadValuesFromUrl, saveValuesToUrl } from "./helpers/urlState";
 import { registerKeyboardShortcuts } from "./helpers/keyboardShortcuts";
+import { trackEvent } from "./helpers/analytics";
 import { calculatePercentage } from "../utils/percentage";
 import { validateNumbers } from "../utils/validation";
 
@@ -33,6 +34,13 @@ async function copyResult() {
   try {
     await navigator.clipboard.writeText(text);
 
+    trackEvent({
+      name: "calculator_copy",
+      data: {
+        calculator: "percentage",
+      },
+    });
+
     copyButton.textContent = "✅ Copied!";
 
     setTimeout(() => {
@@ -54,20 +62,30 @@ async function shareResult() {
 
   if (!text || text === "—") return;
 
+  const supportsNativeShare = "share" in navigator;
+
   try {
-    if (navigator.share) {
+    if (supportsNativeShare) {
       await navigator.share({
         title: document.title,
         text: `Result: ${text}`,
         url: window.location.href,
       });
-
-      shareButton.textContent = "✅ Shared!";
     } else {
       await navigator.clipboard.writeText(window.location.href);
-
-      shareButton.textContent = "🔗 Link Copied!";
     }
+
+    trackEvent({
+      name: "calculator_share",
+      data: {
+        calculator: "percentage",
+        nativeShare: supportsNativeShare,
+      },
+    });
+
+    shareButton.textContent = supportsNativeShare
+      ? "✅ Shared!"
+      : "🔗 Link Copied!";
 
     setTimeout(() => {
       shareButton.textContent = "🔗 Share Result";
@@ -88,6 +106,13 @@ function printResult() {
 
   printButton.textContent = "🖨️ Printing...";
 
+  trackEvent({
+    name: "calculator_print",
+    data: {
+      calculator: "percentage",
+    },
+  });
+
   window.print();
 
   setTimeout(() => {
@@ -100,7 +125,6 @@ shareButton?.addEventListener("click", shareResult);
 printButton?.addEventListener("click", printResult);
 
 if (form && inputX && inputY && resultValue && resultDescription) {
-  // Restore values from URL
   loadValuesFromUrl(inputX, inputY);
 
   const calculate = () => {
@@ -135,19 +159,26 @@ if (form && inputX && inputY && resultValue && resultDescription) {
       "success"
     );
 
-    // Focus result for accessibility
+    trackEvent({
+      name: "calculator_calculate",
+      data: {
+        calculator: "percentage",
+        percent,
+        total,
+        result,
+      },
+    });
+
     resultValue.focus({
       preventScroll: true,
     });
 
-    // Smooth scroll to result
     resultValue.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
     });
   };
 
-  // Auto calculate after restoring values
   calculate();
 
   form.addEventListener("submit", (event) => {
@@ -163,7 +194,6 @@ if (form && inputX && inputY && resultValue && resultDescription) {
 
     saveValuesToUrl("", "");
 
-    // Return focus to first input
     inputX.focus();
   });
 
@@ -180,7 +210,6 @@ if (form && inputX && inputY && resultValue && resultDescription) {
     onCalculate: () => {
       form.requestSubmit();
     },
-
     onReset: () => {
       form.reset();
     },
