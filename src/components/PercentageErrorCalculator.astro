@@ -1,0 +1,35 @@
+---
+import CalculatorLayout from "./calculator/CalculatorLayout.astro";
+import NumberInput from "./calculator/NumberInput.astro";
+import ResultCard from "./calculator/ResultCard.astro";
+import ActionBar from "./calculator/ActionBar.astro";
+---
+
+<CalculatorLayout title="Percentage Error Calculator">
+  <form id="percentage-error-form" class="mt-6 space-y-4" novalidate>
+    <NumberInput
+      id="actual-value"
+      name="actual-value"
+      label="Actual Value"
+      placeholder="e.g. 100"
+    />
+
+    <NumberInput
+      id="experimental-value"
+      name="experimental-value"
+      label="Experimental Value"
+      placeholder="e.g. 95"
+    />
+
+    <ActionBar
+      submitText="Calculate Percentage Error"
+      resetText="Reset"
+    />
+  </form>
+
+  <ResultCard title="Result" />
+</CalculatorLayout>
+
+<script>
+  import "../scripts/percentageErrorCalculator.ts";
+</script>
