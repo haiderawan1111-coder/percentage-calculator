@@ -12,12 +12,19 @@ import RelatedCalculators from "../components/calculator/RelatedCalculators.astr
 import FAQ from "../components/faq/FAQ.astro";
 import FAQSchema from "../components/seo/FAQSchema.astro";
 import FormulaSchema from "../components/seo/FormulaSchema.astro";
+import ContentSchema from "../components/seo/ContentSchema.astro";
 
 import Formula from "../components/formula/Formula.astro";
+
+import HowItWorks from "../components/content/HowItWorks.astro";
+import WorkedExample from "../components/content/WorkedExample.astro";
+import CommonMistakes from "../components/content/CommonMistakes.astro";
+import Tips from "../components/content/Tips.astro";
 
 import { createSEO } from "../seo";
 import { percentageErrorFAQ } from "../data/faqs";
 import { percentageErrorFormula } from "../data/formulas";
+import { percentageErrorContent } from "../data/content";
 
 const seo = createSEO({
   title: "Percentage Error Calculator (Free Online)",
@@ -39,6 +46,7 @@ const seo = createSEO({
 <BaseLayout seo={seo}>
   <FAQSchema section={percentageErrorFAQ} />
   <FormulaSchema section={percentageErrorFormula} />
+  <ContentSchema section={percentageErrorContent} />
 
   <Section>
     <Container>
@@ -66,6 +74,22 @@ const seo = createSEO({
 
         <div class="mt-12">
           <Formula section={percentageErrorFormula} />
+        </div>
+
+        <div class="mt-12">
+          <HowItWorks section={percentageErrorContent.howItWorks} />
+        </div>
+
+        <div class="mt-12">
+          <WorkedExample section={percentageErrorContent.example} />
+        </div>
+
+        <div class="mt-12">
+          <CommonMistakes section={percentageErrorContent.commonMistakes} />
+        </div>
+
+        <div class="mt-12">
+          <Tips section={percentageErrorContent.tips} />
         </div>
 
         <div class="mt-12">

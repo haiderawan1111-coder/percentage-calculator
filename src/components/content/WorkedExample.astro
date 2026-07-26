@@ -1,0 +1,29 @@
+---
+import type { WorkedExample as WorkedExampleType } from "../../data/content/types";
+
+interface Props {
+  section: WorkedExampleType;
+}
+
+const { section } = Astro.props;
+---
+
+{
+  section && (
+    <section class="mt-12 rounded-xl border border-slate-200 p-6">
+      <h2 class="text-2xl font-bold">
+        {section.title}
+      </h2>
+
+      <ol class="mt-4 list-decimal space-y-2 pl-6 text-slate-700">
+        {section.steps.map((step) => (
+          <li>{step}</li>
+        ))}
+      </ol>
+
+      <div class="mt-6 rounded-lg bg-slate-100 p-4">
+        <strong>Result:</strong> {section.result}
+      </div>
+    </section>
+  )
+}

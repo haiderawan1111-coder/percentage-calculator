@@ -1,0 +1,25 @@
+---
+import type { ContentSection } from "../../data/content/types";
+
+interface Props {
+  section: ContentSection;
+}
+
+const { section } = Astro.props;
+---
+
+{
+  section && (
+    <section class="mt-12 rounded-xl border border-slate-200 p-6">
+      <h2 class="text-2xl font-bold">
+        {section.title}
+      </h2>
+
+      <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
+        {section.body.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+  )
+}

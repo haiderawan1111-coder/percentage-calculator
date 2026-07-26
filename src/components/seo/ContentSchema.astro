@@ -1,0 +1,38 @@
+---
+import type { CalculatorContent } from "../../data/content/types";
+
+interface Props {
+  section: CalculatorContent;
+}
+
+const { section } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPageElement",
+  name: "Calculator Content",
+  hasPart: [
+    {
+      "@type": "HowTo",
+      name: section.howItWorks.title,
+      step: section.howItWorks.body.map((item) => ({
+        "@type": "HowToStep",
+        text: item,
+      })),
+    },
+    {
+      "@type": "HowTo",
+      name: section.example.title,
+      step: section.example.steps.map((step) => ({
+        "@type": "HowToStep",
+        text: step,
+      })),
+    },
+  ],
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>
