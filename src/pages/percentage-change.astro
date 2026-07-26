@@ -9,14 +9,26 @@ import Text from "../components/ui/Text.astro";
 
 import PercentageChangeCalculator from "../components/PercentageChangeCalculator.astro";
 import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
+import TopicLinks from "../components/topic/TopicLinks.astro";
 
 import FAQ from "../components/faq/FAQ.astro";
 import FAQSchema from "../components/seo/FAQSchema.astro";
+import FormulaSchema from "../components/seo/FormulaSchema.astro";
+import ContentSchema from "../components/seo/ContentSchema.astro";
+
 import Formula from "../components/formula/Formula.astro";
 
+import HowItWorks from "../components/content/HowItWorks.astro";
+import WorkedExample from "../components/content/WorkedExample.astro";
+import CommonMistakes from "../components/content/CommonMistakes.astro";
+import Tips from "../components/content/Tips.astro";
+
 import { createSEO } from "../seo";
+
 import { percentageChangeFAQ } from "../data/faqs";
 import { percentageChangeFormula } from "../data/formulas";
+import { percentageTopic } from "../data/topics";
+import { percentageChangeContent } from "../data/content";
 
 const seo = createSEO({
   title: "Percentage Change Calculator",
@@ -39,6 +51,8 @@ const seo = createSEO({
 
 <BaseLayout seo={seo}>
   <FAQSchema section={percentageChangeFAQ} />
+  <FormulaSchema section={percentageChangeFormula} />
+  <ContentSchema section={percentageChangeContent} />
 
   <Section>
     <Container>
@@ -66,7 +80,30 @@ const seo = createSEO({
         </div>
 
         <div class="mt-12">
+          <TopicLinks
+            topic={percentageTopic}
+            currentSlug="/percentage-change"
+          />
+        </div>
+
+        <div class="mt-12">
           <Formula section={percentageChangeFormula} />
+        </div>
+
+        <div class="mt-12">
+          <HowItWorks section={percentageChangeContent.howItWorks} />
+        </div>
+
+        <div class="mt-12">
+          <WorkedExample section={percentageChangeContent.example} />
+        </div>
+
+        <div class="mt-12">
+          <CommonMistakes section={percentageChangeContent.commonMistakes} />
+        </div>
+
+        <div class="mt-12">
+          <Tips section={percentageChangeContent.tips} />
         </div>
 
         <div class="mt-12">

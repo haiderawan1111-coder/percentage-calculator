@@ -1,4 +1,6 @@
 export * from "./types";
 export * from "./createContent";
 
-export { percentageErrorContent } from "./percentage-error";
+export * from "./percentage-error";
+export * from "./percentage-change";
+export * from "./percentage-increase";

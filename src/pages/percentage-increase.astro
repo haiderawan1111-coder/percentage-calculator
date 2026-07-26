@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
 import Container from "../components/ui/Container.astro";
 import Section from "../components/ui/Section.astro";
 import Card from "../components/ui/Card.astro";
@@ -8,16 +9,26 @@ import Text from "../components/ui/Text.astro";
 
 import PercentageIncreaseCalculator from "../components/PercentageIncreaseCalculator.astro";
 import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
+import TopicLinks from "../components/topic/TopicLinks.astro";
 
 import FAQ from "../components/faq/FAQ.astro";
 import FAQSchema from "../components/seo/FAQSchema.astro";
 import FormulaSchema from "../components/seo/FormulaSchema.astro";
+import ContentSchema from "../components/seo/ContentSchema.astro";
 
 import Formula from "../components/formula/Formula.astro";
 
+import HowItWorks from "../components/content/HowItWorks.astro";
+import WorkedExample from "../components/content/WorkedExample.astro";
+import CommonMistakes from "../components/content/CommonMistakes.astro";
+import Tips from "../components/content/Tips.astro";
+
 import { createSEO } from "../seo";
+
 import { percentageIncreaseFAQ } from "../data/faqs";
 import { percentageIncreaseFormula } from "../data/formulas";
+import { percentageTopic } from "../data/topics";
+import { percentageIncreaseContent } from "../data/content";
 
 const seo = createSEO({
   title: "Percentage Increase Calculator (Free Online)",
@@ -39,6 +50,7 @@ const seo = createSEO({
 <BaseLayout seo={seo}>
   <FAQSchema section={percentageIncreaseFAQ} />
   <FormulaSchema section={percentageIncreaseFormula} />
+  <ContentSchema section={percentageIncreaseContent} />
 
   <Section>
     <Container>
@@ -65,7 +77,30 @@ const seo = createSEO({
         </div>
 
         <div class="mt-12">
+          <TopicLinks
+            topic={percentageTopic}
+            currentSlug="/percentage-increase"
+          />
+        </div>
+
+        <div class="mt-12">
           <Formula section={percentageIncreaseFormula} />
+        </div>
+
+        <div class="mt-12">
+          <HowItWorks section={percentageIncreaseContent.howItWorks} />
+        </div>
+
+        <div class="mt-12">
+          <WorkedExample section={percentageIncreaseContent.example} />
+        </div>
+
+        <div class="mt-12">
+          <CommonMistakes section={percentageIncreaseContent.commonMistakes} />
+        </div>
+
+        <div class="mt-12">
+          <Tips section={percentageIncreaseContent.tips} />
         </div>
 
         <div class="mt-12">
