@@ -7,6 +7,7 @@ import Heading from "../components/ui/Heading.astro";
 import Text from "../components/ui/Text.astro";
 
 import PercentageIncreaseDecreaseCalculator from "../components/PercentageIncreaseDecreaseCalculator.astro";
+import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
 
 import { createSEO } from "../seo";
 
@@ -38,7 +39,8 @@ const seo = createSEO({
 
           <div class="mx-auto mt-4 max-w-3xl">
             <Text size="lg">
-              Compare two values and instantly see whether the result is a percentage increase or decrease.
+              Compare two values and instantly see whether the result is a
+              percentage increase or decrease.
             </Text>
           </div>
         </div>
@@ -46,6 +48,10 @@ const seo = createSEO({
         <Card class="p-8">
           <PercentageIncreaseDecreaseCalculator />
         </Card>
+
+        <div class="mt-10">
+          <RelatedCalculators currentSlug="percentage-increase-decrease" />
+        </div>
       </div>
     </Container>
   </Section>

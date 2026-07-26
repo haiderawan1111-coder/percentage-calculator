@@ -8,6 +8,7 @@ import Heading from "../components/ui/Heading.astro";
 import Text from "../components/ui/Text.astro";
 
 import PercentageDecreaseCalculator from "../components/PercentageDecreaseCalculator.astro";
+import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
 
 import { createSEO } from "../seo";
 
@@ -50,6 +51,10 @@ const seo = createSEO({
         <Card class="p-8">
           <PercentageDecreaseCalculator />
         </Card>
+
+        <div class="mt-10">
+          <RelatedCalculators currentSlug="percentage-decrease" />
+        </div>
       </div>
     </Container>
   </Section>
