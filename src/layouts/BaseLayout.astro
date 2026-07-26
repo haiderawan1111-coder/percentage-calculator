@@ -72,27 +72,27 @@ const schema = createSchema(seo);
 
     <meta
       property="og:site_name"
-      content={siteName}
+      content={seo.openGraph?.siteName ?? siteName}
     />
 
     <meta
       property="og:locale"
-      content="en_US"
+      content={seo.openGraph?.locale ?? "en_US"}
     />
 
     <meta
       property="og:title"
-      content={seo.openGraph?.title}
+      content={seo.openGraph?.title ?? seo.title}
     />
 
     <meta
       property="og:description"
-      content={seo.openGraph?.description}
+      content={seo.openGraph?.description ?? seo.description}
     />
 
     <meta
       property="og:url"
-      content={seo.canonical}
+      content={seo.openGraph?.url ?? seo.canonical}
     />
 
     <meta
@@ -101,55 +101,74 @@ const schema = createSchema(seo);
     />
 
     <meta
-      property="og:image:alt"
-      content={seo.openGraph?.title ?? seo.title}
-    />
-
-    <meta
-      property="og:image:width"
-      content="1200"
-    />
-
-    <meta
-      property="og:image:height"
-      content="630"
-    />
-
-    <!-- Twitter -->
-
-    <meta
-      name="twitter:card"
-      content="summary_large_image"
-    />
-
-    <meta
-      name="twitter:site"
-      content={siteConfig.social.twitter}
-    />
-
-    <meta
-      name="twitter:creator"
-      content={siteConfig.social.twitter}
-    />
-
-    <meta
-      name="twitter:title"
-      content={seo.openGraph?.title}
-    />
-
-    <meta
-      name="twitter:description"
-      content={seo.openGraph?.description}
-    />
-
-    <meta
-      name="twitter:image"
+      property="og:image:url"
       content={seo.openGraph?.image}
     />
 
     <meta
+      property="og:image:secure_url"
+      content={seo.openGraph?.secureImage ?? seo.openGraph?.image}
+    />
+
+    <meta
+      property="og:image:type"
+      content={seo.openGraph?.imageType ?? "image/png"}
+    />
+
+    <meta
+      property="og:image:width"
+      content={String(seo.openGraph?.imageWidth ?? 1200)}
+    />
+
+    <meta
+      property="og:image:height"
+      content={String(seo.openGraph?.imageHeight ?? 630)}
+    />
+
+    <meta
+      property="og:image:alt"
+      content={seo.openGraph?.imageAlt ?? seo.title}
+    />
+
+    <!-- Twitter / X -->
+
+    <meta
+      name="twitter:card"
+      content={seo.twitter?.card ?? "summary_large_image"}
+    />
+
+    <meta
+      name="twitter:site"
+      content={seo.twitter?.site ?? siteConfig.social.twitter}
+    />
+
+    <meta
+      name="twitter:creator"
+      content={seo.twitter?.creator ?? siteConfig.social.twitter}
+    />
+
+    <meta
+      name="twitter:title"
+      content={seo.twitter?.title ?? seo.openGraph?.title ?? seo.title}
+    />
+
+    <meta
+      name="twitter:description"
+      content={
+        seo.twitter?.description ??
+        seo.openGraph?.description ??
+        seo.description
+      }
+    />
+
+    <meta
+      name="twitter:image"
+      content={seo.twitter?.image ?? seo.openGraph?.image}
+    />
+
+    <meta
       name="twitter:image:alt"
-      content={seo.openGraph?.title ?? seo.title}
+      content={seo.twitter?.imageAlt ?? seo.openGraph?.imageAlt ?? seo.title}
     />
 
     <!-- Icons -->
@@ -174,6 +193,7 @@ const schema = createSchema(seo);
 
   <body class="min-h-screen bg-slate-50 text-slate-900">
     <!-- Header -->
+
     <header class="border-b border-slate-200 bg-white">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a
@@ -186,11 +206,13 @@ const schema = createSchema(seo);
     </header>
 
     <!-- Main Content -->
+
     <main class="py-8">
       <slot />
     </main>
 
     <!-- Footer -->
+
     <footer class="mt-16 border-t border-slate-200 bg-white">
       <div
         class="mx-auto max-w-7xl px-4 py-6 text-center text-sm text-slate-500 sm:px-6 lg:px-8"

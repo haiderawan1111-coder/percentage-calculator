@@ -10,8 +10,18 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface RobotsConfig {
+  index?: boolean;
+  follow?: boolean;
+
+  maxSnippet?: number;
+  maxImagePreview?: "none" | "standard" | "large";
+  maxVideoPreview?: number;
+}
+
 export interface SEOData {
   title: string;
+
   description: string;
 
   canonical: string;
@@ -34,12 +44,43 @@ export interface SEOData {
 
   openGraph?: {
     title?: string;
+
     description?: string;
+
     image?: string;
+
+    secureImage?: string;
+
+    imageAlt?: string;
+
+    imageWidth?: number;
+
+    imageHeight?: number;
+
+    imageType?: string;
+
+    locale?: string;
+
+    siteName?: string;
+
+    url?: string;
   };
 
-  robots?: {
-    index?: boolean;
-    follow?: boolean;
+  twitter?: {
+    card?: string;
+
+    title?: string;
+
+    description?: string;
+
+    image?: string;
+
+    imageAlt?: string;
+
+    site?: string;
+
+    creator?: string;
   };
+
+  robots?: RobotsConfig;
 }
