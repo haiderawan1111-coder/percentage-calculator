@@ -9,7 +9,11 @@ import Text from "../components/ui/Text.astro";
 import PercentageErrorCalculator from "../components/PercentageErrorCalculator.astro";
 import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
 
+import FAQ from "../components/faq/FAQ.astro";
+import FAQSchema from "../components/seo/FAQSchema.astro";
+
 import { createSEO } from "../seo";
+import { percentageErrorFAQ } from "../data/faqs";
 
 const seo = createSEO({
   title: "Percentage Error Calculator (Free Online)",
@@ -29,6 +33,8 @@ const seo = createSEO({
 ---
 
 <BaseLayout seo={seo}>
+  <FAQSchema section={percentageErrorFAQ} />
+
   <Section>
     <Container>
       <div class="mx-auto max-w-5xl">
@@ -51,6 +57,10 @@ const seo = createSEO({
 
         <div class="mt-10">
           <RelatedCalculators currentSlug="percentage-error" />
+        </div>
+
+        <div class="mt-12">
+          <FAQ section={percentageErrorFAQ} />
         </div>
       </div>
     </Container>

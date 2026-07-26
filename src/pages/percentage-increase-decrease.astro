@@ -9,7 +9,11 @@ import Text from "../components/ui/Text.astro";
 import PercentageIncreaseDecreaseCalculator from "../components/PercentageIncreaseDecreaseCalculator.astro";
 import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
 
+import FAQ from "../components/faq/FAQ.astro";
+import FAQSchema from "../components/seo/FAQSchema.astro";
+
 import { createSEO } from "../seo";
+import { percentageIncreaseDecreaseFAQ } from "../data/faqs";
 
 const seo = createSEO({
   title: "Percentage Increase or Decrease Calculator (Free Online)",
@@ -29,6 +33,8 @@ const seo = createSEO({
 ---
 
 <BaseLayout seo={seo}>
+  <FAQSchema section={percentageIncreaseDecreaseFAQ} />
+
   <Section>
     <Container>
       <div class="mx-auto max-w-5xl">
@@ -51,6 +57,10 @@ const seo = createSEO({
 
         <div class="mt-10">
           <RelatedCalculators currentSlug="percentage-increase-decrease" />
+        </div>
+
+        <div class="mt-12">
+          <FAQ section={percentageIncreaseDecreaseFAQ} />
         </div>
       </div>
     </Container>

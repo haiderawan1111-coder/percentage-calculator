@@ -1,0 +1,31 @@
+---
+import type { FAQSection } from "../../faq";
+
+interface Props {
+  section: FAQSection;
+}
+
+const { section } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: section.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+---
+
+{
+  section.items.length > 0 && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schema)}
+    />
+  )
+}
