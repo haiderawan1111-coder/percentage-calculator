@@ -1,0 +1,28 @@
+---
+import type { FormulaSection } from "../../data/formulas/types";
+
+interface Props {
+  section: FormulaSection;
+}
+
+const { section } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+
+  headline: section.title,
+  text: section.formula,
+  description: section.explanation,
+
+  about: {
+    "@type": "Thing",
+    name: section.title,
+  },
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>

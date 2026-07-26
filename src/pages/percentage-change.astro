@@ -12,9 +12,11 @@ import RelatedCalculators from "../components/calculator/RelatedCalculators.astr
 
 import FAQ from "../components/faq/FAQ.astro";
 import FAQSchema from "../components/seo/FAQSchema.astro";
+import Formula from "../components/formula/Formula.astro";
 
 import { createSEO } from "../seo";
 import { percentageChangeFAQ } from "../data/faqs";
+import { percentageChangeFormula } from "../data/formulas";
 
 const seo = createSEO({
   title: "Percentage Change Calculator",
@@ -61,6 +63,10 @@ const seo = createSEO({
 
         <div class="mt-10">
           <RelatedCalculators currentSlug="percentage-change" />
+        </div>
+
+        <div class="mt-12">
+          <Formula section={percentageChangeFormula} />
         </div>
 
         <div class="mt-12">
