@@ -9,16 +9,26 @@ import Text from "../components/ui/Text.astro";
 
 import PercentageDecreaseCalculator from "../components/PercentageDecreaseCalculator.astro";
 import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
+import TopicLinks from "../components/topic/TopicLinks.astro";
 
 import FAQ from "../components/faq/FAQ.astro";
 import FAQSchema from "../components/seo/FAQSchema.astro";
 import FormulaSchema from "../components/seo/FormulaSchema.astro";
+import ContentSchema from "../components/seo/ContentSchema.astro";
 
 import Formula from "../components/formula/Formula.astro";
 
+import HowItWorks from "../components/content/HowItWorks.astro";
+import WorkedExample from "../components/content/WorkedExample.astro";
+import CommonMistakes from "../components/content/CommonMistakes.astro";
+import Tips from "../components/content/Tips.astro";
+
 import { createSEO } from "../seo";
+
 import { percentageDecreaseFAQ } from "../data/faqs";
 import { percentageDecreaseFormula } from "../data/formulas";
+import { percentageTopic } from "../data/topics";
+import { percentageDecreaseContent } from "../data/content";
 
 const seo = createSEO({
   title: "Percentage Decrease Calculator (Free Online)",
@@ -42,6 +52,7 @@ const seo = createSEO({
 <BaseLayout seo={seo}>
   <FAQSchema section={percentageDecreaseFAQ} />
   <FormulaSchema section={percentageDecreaseFormula} />
+  <ContentSchema section={percentageDecreaseContent} />
 
   <Section>
     <Container>
@@ -68,7 +79,30 @@ const seo = createSEO({
         </div>
 
         <div class="mt-12">
+          <TopicLinks
+            topic={percentageTopic}
+            currentSlug="/percentage-decrease"
+          />
+        </div>
+
+        <div class="mt-12">
           <Formula section={percentageDecreaseFormula} />
+        </div>
+
+        <div class="mt-12">
+          <HowItWorks section={percentageDecreaseContent.howItWorks} />
+        </div>
+
+        <div class="mt-12">
+          <WorkedExample section={percentageDecreaseContent.example} />
+        </div>
+
+        <div class="mt-12">
+          <CommonMistakes section={percentageDecreaseContent.commonMistakes} />
+        </div>
+
+        <div class="mt-12">
+          <Tips section={percentageDecreaseContent.tips} />
         </div>
 
         <div class="mt-12">
