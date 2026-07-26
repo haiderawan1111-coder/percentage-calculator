@@ -2,6 +2,14 @@ import type { SEOData } from "./types";
 import { siteConfig } from "../config/site";
 import { createFAQSchema } from "./faq";
 
+function toISODate(date?: Date) {
+  if (!date || Number.isNaN(date.getTime())) {
+    return undefined;
+  }
+
+  return date.toISOString();
+}
+
 function buildOrganization() {
   return {
     "@context": "https://schema.org",
@@ -71,11 +79,11 @@ function buildArticle(seo: SEOData, url: string) {
       "@id": url,
     },
 
-    datePublished: seo.publishDate?.toISOString(),
+    datePublished: toISODate(seo.publishDate),
 
     dateModified:
-      seo.updatedDate?.toISOString() ??
-      seo.publishDate?.toISOString(),
+      toISODate(seo.updatedDate) ??
+      toISODate(seo.publishDate),
 
     image: seo.image
       ? new URL(seo.image, siteConfig.url).toString()
@@ -84,16 +92,26 @@ function buildArticle(seo: SEOData, url: string) {
 }
 
 function buildBreadcrumb(url: string, seo: SEOData) {
+  const currentPage = {
+    name: seo.title,
+    url,
+  };
+
+  const breadcrumbItems = (seo.breadcrumbs ?? []).filter((item) => {
+    const itemUrl = item.url.startsWith("http")
+      ? item.url
+      : new URL(item.url, siteConfig.url).toString();
+
+    return itemUrl !== url;
+  });
+
   const items = [
     {
       name: "Home",
       url: siteConfig.url,
     },
-    ...(seo.breadcrumbs ?? []),
-    {
-      name: seo.title,
-      url,
-    },
+    ...breadcrumbItems,
+    currentPage,
   ];
 
   return {
