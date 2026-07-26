@@ -1,0 +1,55 @@
+---
+import type { TopicGroup } from "../../data/topics/types";
+
+interface Props {
+  topic: TopicGroup;
+  currentSlug?: string;
+}
+
+const { topic, currentSlug } = Astro.props;
+---
+
+{
+  topic && (
+    <section class="mt-12 rounded-xl border border-slate-200 p-6">
+      <h2 class="text-2xl font-bold">
+        {topic.title}
+      </h2>
+
+      {
+        topic.description && (
+          <p class="mt-2 text-slate-600">
+            {topic.description}
+          </p>
+        )
+      }
+
+      <ul
+        class="mt-4 grid gap-3 sm:grid-cols-2"
+        aria-label={`${topic.title} links`}
+      >
+        {topic.calculators
+          .filter((calculator) => calculator.slug !== currentSlug)
+          .map((calculator) => (
+            <li>
+              <a
+                href={calculator.slug}
+                class="text-blue-600 transition hover:text-blue-800 hover:underline"
+              >
+                {calculator.title}
+              </a>
+            </li>
+          ))}
+      </ul>
+
+      <div class="mt-6 border-t border-slate-200 pt-4">
+        <a
+          href="/"
+          class="inline-flex items-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+        >
+          Explore All Percentage Calculators
+        </a>
+      </div>
+    </section>
+  )
+}
