@@ -1,6 +1,7 @@
 import { setStatus, clearStatus } from "./helpers/status";
 import { percentageIncrease } from "../calculator/formulas";
 import { validateNumbers } from "../utils/validation";
+import { trackEvent } from "./helpers/analytics";
 
 const form = document.querySelector<HTMLFormElement>(
   "#percentage-increase-form"
@@ -18,6 +19,18 @@ const resultValue =
 const resultDescription =
   document.querySelector<HTMLElement>("#result-description");
 
+  const copyButton = document.querySelector<HTMLButtonElement>(
+  "#copy-result-button"
+);
+
+const shareButton = document.querySelector<HTMLButtonElement>(
+  "#share-result-button"
+);
+
+const printButton = document.querySelector<HTMLButtonElement>(
+  "#print-result-button"
+);
+
 if (
   form &&
   valueInput &&
@@ -25,6 +38,94 @@ if (
   resultValue &&
   resultDescription
 ) {
+  copyButton?.addEventListener("click", async () => {
+  if (!resultValue) return;
+
+  const text = resultValue.textContent?.trim();
+
+  if (!text || text === "—") return;
+
+  try {
+    await navigator.clipboard.writeText(text);
+
+    trackEvent({
+      name: "calculator_copy",
+      data: {
+        calculator: "percentage-increase",
+      },
+    });
+
+    copyButton!.textContent = "✅ Copied!";
+
+    setTimeout(() => {
+      copyButton!.textContent = "📋 Copy Result";
+    }, 2000);
+  } catch {
+    copyButton!.textContent = "❌ Copy Failed";
+
+    setTimeout(() => {
+      copyButton!.textContent = "📋 Copy Result";
+    }, 2000);
+  }
+});
+
+shareButton?.addEventListener("click", async () => {
+  if (!resultValue) return;
+
+  const text = resultValue.textContent?.trim();
+
+  if (!text || text === "—") return;
+
+  try {
+    if (navigator.share) {
+  await navigator.share({
+    title: document.title,
+    text: `Result: ${text}`,
+    url: window.location.href,
+  });
+} else if (navigator.clipboard) {
+  await navigator.clipboard.writeText(window.location.href);
+}
+
+    trackEvent({
+      name: "calculator_share",
+      data: {
+        calculator: "percentage-increase",
+      },
+    });
+
+    shareButton!.textContent = "✅ Shared!";
+
+    setTimeout(() => {
+      shareButton!.textContent = "🔗 Share Result";
+    }, 2000);
+  } catch {
+    shareButton!.textContent = "❌ Share Failed";
+
+    setTimeout(() => {
+      shareButton!.textContent = "🔗 Share Result";
+    }, 2000);
+  }
+});
+
+printButton?.addEventListener("click", () => {
+  const original = printButton?.textContent;
+
+  printButton!.textContent = "🖨️ Printing...";
+
+  trackEvent({
+    name: "calculator_print",
+    data: {
+      calculator: "percentage-increase",
+    },
+  });
+
+  window.print();
+
+  setTimeout(() => {
+    printButton!.textContent = original ?? "🖨️ Print Result";
+  }, 1000);
+});
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 

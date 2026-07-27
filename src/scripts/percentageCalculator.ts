@@ -1,3 +1,4 @@
+import { registerActionButtons } from "./helpers/actionButtons";
 import { setStatus, clearStatus } from "./helpers/status";
 import { loadValuesFromUrl, saveValuesToUrl } from "./helpers/urlState";
 import { registerKeyboardShortcuts } from "./helpers/keyboardShortcuts";
