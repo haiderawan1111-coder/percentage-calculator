@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Container from "../components/ui/Container.astro";
+import Section from "../components/ui/Section.astro";
+import Card from "../components/ui/Card.astro";
+import Heading from "../components/ui/Heading.astro";
+import Text from "../components/ui/Text.astro";
+
+import DiscountCalculator from "../components/DiscountCalculator.astro";
+import RelatedCalculators from "../components/calculator/RelatedCalculators.astro";
+import TopicLinks from "../components/topic/TopicLinks.astro";
+
+import FAQ from "../components/faq/FAQ.astro";
+import FAQSchema from "../components/seo/FAQSchema.astro";
+import FormulaSchema from "../components/seo/FormulaSchema.astro";
+import ContentSchema from "../components/seo/ContentSchema.astro";
+
+import Formula from "../components/formula/Formula.astro";
+
+import HowItWorks from "../components/content/HowItWorks.astro";
+import WorkedExample from "../components/content/WorkedExample.astro";
+import CommonMistakes from "../components/content/CommonMistakes.astro";
+import Tips from "../components/content/Tips.astro";
+
+import { createSEO } from "../seo";
+
+import { discountFAQ } from "../data/faqs";
+import { discountFormula } from "../data/formulas";
+import { percentageTopic } from "../data/topics";
+import { discountContent } from "../data/content";
+
+const seo = createSEO({
+  title: "Discount Calculator",
+
+  description:
+    "Calculate discount amount, money saved, and final sale price instantly. Free online discount calculator.",
+
+  canonical: "/discount",
+
+  keywords: [
+    "discount calculator",
+    "sale price calculator",
+    "discount percentage",
+    "price after discount",
+    "discount amount",
+    "money saved",
+  ],
+});
+---
+
+<BaseLayout seo={seo}>
+  <FAQSchema section={discountFAQ} />
+  <FormulaSchema section={discountFormula} />
+  <ContentSchema section={discountContent} />
+
+  <Section>
+    <Container>
+      <div class="mx-auto max-w-5xl">
+        <div class="mb-10 text-center">
+          <Heading as="h1">
+            Discount Calculator
+          </Heading>
+
+          <div class="mx-auto mt-4 max-w-3xl">
+            <Text size="lg">
+              Calculate discount amount, money saved, and the final sale price
+              instantly. Fast, accurate, free, and works on desktop, tablet,
+              and mobile devices.
+            </Text>
+          </div>
+        </div>
+
+        <Card class="p-8">
+          <DiscountCalculator />
+        </Card>
+
+        <div class="mt-10">
+          <RelatedCalculators currentSlug="discount" />
+        </div>
+
+        <div class="mt-12">
+          <TopicLinks
+            topic={percentageTopic}
+            currentSlug="/discount"
+          />
+        </div>
+
+        <div class="mt-12">
+          <Formula section={discountFormula} />
+        </div>
+
+        <div class="mt-12">
+          <HowItWorks section={discountContent.howItWorks} />
+        </div>
+
+        <div class="mt-12">
+          <WorkedExample section={discountContent.example} />
+        </div>
+
+        <div class="mt-12">
+          <CommonMistakes section={discountContent.commonMistakes} />
+        </div>
+
+        <div class="mt-12">
+          <Tips section={discountContent.tips} />
+        </div>
+
+        <div class="mt-12">
+          <FAQ section={discountFAQ} />
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

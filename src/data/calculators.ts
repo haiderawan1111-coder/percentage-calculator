@@ -79,4 +79,20 @@ export const calculators: readonly CalculatorItem[] = [
       "change",
     ],
   },
+  {
+    title: "Discount Calculator",
+    description: "Calculate discount amount, money saved, and final sale price instantly.",
+    href: "/discount",
+
+    slug: "discount",
+    category: "shopping",
+    keywords: [
+      "discount",
+      "sale",
+      "price",
+      "discount percentage",
+      "money saved",
+      "final price",
+    ],
+  },
 ] as const;

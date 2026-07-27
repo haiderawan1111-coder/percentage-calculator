@@ -1,0 +1,35 @@
+---
+import CalculatorLayout from "./calculator/CalculatorLayout.astro";
+import NumberInput from "./calculator/NumberInput.astro";
+import ResultCard from "./calculator/ResultCard.astro";
+import ActionBar from "./calculator/ActionBar.astro";
+---
+
+<CalculatorLayout title="Discount Calculator">
+  <form id="discount-form" class="mt-6 space-y-4" novalidate>
+    <NumberInput
+      id="original-price"
+      name="original-price"
+      label="Original Price"
+      placeholder="e.g. 100"
+    />
+
+    <NumberInput
+      id="discount-percent"
+      name="discount-percent"
+      label="Discount (%)"
+      placeholder="e.g. 20"
+    />
+
+    <ActionBar
+      submitText="Calculate Discount"
+      resetText="Reset"
+    />
+  </form>
+
+  <ResultCard title="Result" />
+</CalculatorLayout>
+
+<script>
+  import "../scripts/discountCalculator.ts";
+</script>

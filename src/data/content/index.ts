@@ -6,3 +6,5 @@ export * from "./percentage-change";
 export * from "./percentage-increase";
 export * from "./percentage-decrease";
 export * from "./percentage-increase-decrease";
+
+export * from "./discount";

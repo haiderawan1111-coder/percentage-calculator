@@ -6,3 +6,5 @@ export { percentageChangeFormula } from "./percentage-change";
 export { percentageIncreaseFormula } from "./percentage-increase";
 export { percentageDecreaseFormula } from "./percentage-decrease";
 export { percentageIncreaseDecreaseFormula } from "./percentage-increase-decrease";
+
+export { discountFormula } from "./discount";
