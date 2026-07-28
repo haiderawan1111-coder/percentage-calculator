@@ -5,3 +5,4 @@ export { percentageErrorFAQ } from "./percentage-error";
 export { percentageIncreaseDecreaseFAQ } from "./percentage-increase-decrease";
 
 export { discountFAQ } from "./discount";
+export { salesTaxFAQ } from "./salesTax";

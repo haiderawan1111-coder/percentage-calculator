@@ -4,3 +4,4 @@ export * from "./percentageDecrease";
 export * from "./percentageChange";
 
 export * from "./discount";
+export * from "./salesTax";

@@ -8,3 +8,4 @@ export * from "./percentage-decrease";
 export * from "./percentage-increase-decrease";
 
 export * from "./discount";
+export * from "./salesTax";
