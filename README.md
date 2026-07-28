@@ -15,6 +15,9 @@ Build fast. Calculate accurately. Learn confidently.
 
 </div>
 
+**Current Version:** v0.21.1
+
+**Status:** Active Development 🚧
 ---
 
 ## 📖 Table of Contents
