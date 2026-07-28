@@ -1,0 +1,37 @@
+---
+import CalculatorLayout from "./calculator/CalculatorLayout.astro";
+import NumberInput from "./calculator/NumberInput.astro";
+import ResultCard from "./calculator/ResultCard.astro";
+import ActionBar from "./calculator/ActionBar.astro";
+---
+
+<CalculatorLayout title="Sales Tax Calculator">
+  <form id="sales-tax-form" class="mt-6 space-y-4" novalidate>
+
+    <NumberInput
+      id="subtotal"
+      name="subtotal"
+      label="Subtotal"
+      placeholder="e.g. 100"
+    />
+
+    <NumberInput
+      id="tax-percent"
+      name="tax-percent"
+      label="Sales Tax (%)"
+      placeholder="e.g. 8"
+    />
+
+    <ActionBar
+      submitText="Calculate Sales Tax"
+      resetText="Reset"
+    />
+
+  </form>
+
+  <ResultCard title="Result" />
+</CalculatorLayout>
+
+<script>
+  import "../scripts/salesTaxCalculator.ts";
+</script>

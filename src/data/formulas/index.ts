@@ -8,3 +8,4 @@ export { percentageDecreaseFormula } from "./percentage-decrease";
 export { percentageIncreaseDecreaseFormula } from "./percentage-increase-decrease";
 
 export { discountFormula } from "./discount";
+export { salesTaxFormula } from "./salesTax";
